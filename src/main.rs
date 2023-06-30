@@ -1,6 +1,6 @@
-use std::io;
+use rand::Rng;
 use std::cmp::Ordering;
-use rand::Rng; //Rng trait defines methods that random number generators implement
+use std::io; //Rng trait defines methods that random number generators implement
 
 // cargo doc --open
 
@@ -9,13 +9,12 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1..=100); // rand::tread_rng() function, gen_range() method, defined by Rng trait: inclusive on upper and lower bounds
 
-
     //println!("The secret number is: {secret_number}");
 
     loop {
         println!("Please input your guess.");
 
-        let mut guess = String::new(); // mut = mutable. ::new Associated function 
+        let mut guess = String::new(); // mut = mutable. ::new Associated function
 
         io::stdin()
             .read_line(&mut guess)
@@ -27,7 +26,7 @@ fn main() {
             Ok(num) => num,
             Err(_) => continue,
         }; // Trim eliminates white spaces that results from pressing enter.
-    
+
         println!("You guessed: {guess}");
 
         match guess.cmp(&secret_number) {
@@ -40,5 +39,5 @@ fn main() {
         };
     }
 
-    //Ordering is an enum. cmp method = compare. 
+    //Ordering is an enum. cmp method = compare.
 }
